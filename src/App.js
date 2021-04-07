@@ -1,18 +1,24 @@
 import './App.css';
-import {Route, Router} from 'react-router-dom'
+import {Route, Router, Switch} from 'react-router-dom'
 import Home from './components/Home/Home'
 import About from './components/About/About'
-import Header from './components/common/Header'
+import Header from './components/common/Header' 
+import ThePage from './components/Error/ThePage'
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid">
       <Header/>
+    <Switch>
      <Route exact path='/'>
        <Home/>
      </Route>
      <Route path="/about">
        <About/>
      </Route>
+     <Route>
+      <ThePage/>
+     </Route>
+   </Switch>
     </div>
   );
 }
