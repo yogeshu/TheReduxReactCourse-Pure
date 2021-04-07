@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const ActiveStyle = { color: "#43e" };
+const ActiveStyle = { color: "#43e", borderBottom: '1px solid golden' };
 
 const Header = () => (
   <div className="jumbotron">
@@ -13,7 +13,7 @@ const Header = () => (
       {"|"}
       <NavLink activeStyle={ActiveStyle} to="/about">
         About
-      </NavLink>
+      </NavLink>{"|"}
       <NavLink activeStyle={ActiveStyle} to="/courses">
         Courses
       </NavLink>
