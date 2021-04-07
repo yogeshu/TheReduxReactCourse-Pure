@@ -8,10 +8,14 @@ const Header = () => (
     <nav>
       <NavLink activeStyle={ActiveStyle} to="/" exact>
         Home
-      </NavLink>{" "}
+      </NavLink>
+      
       {"|"}
       <NavLink activeStyle={ActiveStyle} to="/about">
         About
+      </NavLink>
+      <NavLink activeStyle={ActiveStyle} to="/courses">
+        Courses
       </NavLink>
     </nav>
   </div>
