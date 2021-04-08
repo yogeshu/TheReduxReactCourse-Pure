@@ -1,7 +1,8 @@
 import React from "react";
 import {connect} from 'react-redux'
 
-import createCourse from '../../redux/action/CreateCourse'
+import * as courseActions from '../../redux/action/CreateCourse'
+import {bindActionCreators} from 'redux'
 class CoursesPage extends React.Component {
   state = {
     course: {
@@ -15,8 +16,8 @@ class CoursesPage extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch(createCourse(this.state.course))
-    // alert("This Course Added You can try loading this in account");
+    this.props.actions.createCourse(this.state.course);
+    // event.target.reset(); // reset input 
   };
 
   render() {
@@ -49,5 +50,10 @@ class CoursesPage extends React.Component {
      courses: state.courses
    };
  }
+ function mapDispatchToProps(dispatch){
+   return{
+     actions: bindActionCreators(courseActions,dispatch)
+   }
+ }
 
-export default connect(mapStateToProps)(CoursesPage);
+export default connect(mapStateToProps,mapDispatchToProps)(CoursesPage);

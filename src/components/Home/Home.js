@@ -7,8 +7,12 @@ const Home = ()=> (
 
         <h2> Course Of PluralSight </h2>
         <p> React Redux Course  tuturial </p>
-        <Link to="about" className="btn btn-primary btn-lg">
+        <Link to="about" className="btn btn-primary mr-5 btn-lg">
             Learn More.
+        </Link>
+        
+        <Link to="courses" className="btn btn-primary btn-lg">
+            Courses
         </Link>
     </div>
 )
