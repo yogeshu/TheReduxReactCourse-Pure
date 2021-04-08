@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux'
 
-import * as CourseAction from '../../redux/action/CreateCourse'
+import createCourse from '../../redux/action/CreateCourse'
 class CoursesPage extends React.Component {
   state = {
     course: {
@@ -15,13 +15,14 @@ class CoursesPage extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch(CourseAction.createCourse(this.state.course))
-    alert("This Course Added You can try loading this in account");
+    this.props.dispatch(createCourse(this.state.course))
+    // alert("This Course Added You can try loading this in account");
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <React.Fragment>  
+            <form onSubmit={this.handleSubmit}>
         <h2> Courses</h2>
         <p> Add Courses</p>
         <input
@@ -34,7 +35,11 @@ class CoursesPage extends React.Component {
           {" "}
           Submit{" "}
         </button>
-      </form>
+      </form>  
+       {this.props.courses.map(c=>(
+         <div key={c.title}>{c.title}</div>
+       ))}
+       </React.Fragment>
     );
   }
 }
@@ -45,4 +50,4 @@ class CoursesPage extends React.Component {
    };
  }
 
-export default connect( mapStateToProps,mapDispatchToProps)( CoursesPage);
+export default connect(mapStateToProps)(CoursesPage);
