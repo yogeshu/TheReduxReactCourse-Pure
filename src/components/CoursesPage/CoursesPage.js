@@ -6,15 +6,14 @@ class CoursesPage extends React.Component {
     },
   };
 
-
   handleChange = (e) => {
     const course = { ...this.state.course, title: e.target.value };
     this.setState({ course });
   };
-  handleSubmit = (event) =>{
-event.preventDefault();
- alert("This Course Added You can try loading this in account")
-  }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    alert("This Course Added You can try loading this in account");
+  };
 
   render() {
     return (
@@ -31,7 +30,6 @@ event.preventDefault();
           {" "}
           Submit{" "}
         </button>
-        
       </form>
     );
   }
