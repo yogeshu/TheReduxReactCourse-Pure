@@ -1,4 +1,7 @@
 import React from "react";
+import {connect} from 'react-redux'
+
+import * as CourseAction from '../../redux/action/CreateCourse'
 class CoursesPage extends React.Component {
   state = {
     course: {
@@ -12,6 +15,7 @@ class CoursesPage extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.dispatch(CourseAction.createCourse(this.state.course))
     alert("This Course Added You can try loading this in account");
   };
 
@@ -34,5 +38,11 @@ class CoursesPage extends React.Component {
     );
   }
 }
+  
+ function mapStateToProps(state){
+   return{
+     courses: state.courses
+   };
+ }
 
-export default CoursesPage;
+export default connect( mapStateToProps,mapDispatchToProps)( CoursesPage);
