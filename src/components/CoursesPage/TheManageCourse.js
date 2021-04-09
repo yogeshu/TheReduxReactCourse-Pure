@@ -5,22 +5,24 @@ import * as courseActions from "../../redux/action/CreateCourse";
 import * as authorActions from "../../redux/action/createAuthor";
 
 import { bindActionCreators } from "redux";
-class TheManageCourse extends React.Component {
-  //  const { courses, authors ,actions }  = this.props
-  componentDidMount() {
-    if (this.props.courses.length === 0) {
-      this.props.actions.loadCourses().catch((error) => {
-        alert("there is no data " + error);
-      });
-    }
-    if (this.props.authors.length === 0) {
-      this.props.actions.loadAuthors().catch((error) => {
-        alert("there is no data " + error);
-      });
-    }
-  }
+function TheManageCourse ( { courses,actions,authors}) {
+  React.useEffect(()=>{
 
-  render() {
+    if (courses.length === 0) {
+      actions.loadCourses().catch((error) => {
+          alert("there is no data " + error);
+        });
+      }
+      if (authors.length === 0) {
+        actions.loadAuthors().catch((error) => {
+          alert("there is no data " + error);
+        });
+      }
+  })
+
+  
+
+  
     return (
       <React.Fragment>
         {/* <form onSubmit={this.handleSubmit}> */}
@@ -28,7 +30,7 @@ class TheManageCourse extends React.Component {
       </React.Fragment>
     );
   }
-}
+
 
 function mapStateToProps(state) {
   return {
