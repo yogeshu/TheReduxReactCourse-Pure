@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const SelectInput = ({
   name,
@@ -36,14 +36,6 @@ const SelectInput = ({
   );
 };
 
-SelectInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  defaultOption: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  error: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object)
-};
+
 
 export default SelectInput;
