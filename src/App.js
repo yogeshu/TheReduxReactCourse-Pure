@@ -6,7 +6,7 @@ import Header from "./components/common/Header";
 import ThePage from "./components/Error/ThePage";
 
 import CoursesPage from "./components/CoursesPage/CoursesPage";
-
+import TheManagePage from "./components/CoursesPage/TheManageCourse";
 function App() {
   return (
     <div className="container-fluid">
@@ -21,6 +21,12 @@ function App() {
         <Route path="/courses">
           <CoursesPage />
         </Route>
+        <Route path="/course/:slug">
+          <TheManagePage />
+          <Route exact path="/course">
+            <TheManagePage />
+          </Route>
+        </Route>{" "}
         <Route>
           <ThePage />
         </Route>
