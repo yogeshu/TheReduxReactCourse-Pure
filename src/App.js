@@ -22,11 +22,12 @@ function App() {
           <CoursesPage />
         </Route>
         <Route path="/course/:slug">
-          <TheManagePage />
+          <TheManagePage /> 
+          </Route>
           <Route exact path="/course">
             <TheManagePage />
           </Route>
-        </Route>{" "}
+        {/* </Route>{" "} */}
         <Route>
           <ThePage />
         </Route>
