@@ -12,7 +12,6 @@ function createCourseSuccess(course) {
 function updateCourseSuccess(course) {
   return { type: types.updateCourseSuccess, course };
 }
-
 export function loadCourses() {
   return async function (dispatch) {
     try {

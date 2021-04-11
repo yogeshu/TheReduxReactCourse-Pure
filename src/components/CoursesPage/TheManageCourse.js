@@ -4,10 +4,13 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/action/CreateCourse";
 import * as authorActions from "../../redux/action/createAuthor";
 import { newCourse } from "../../../tools/mockData";
+
 import CourseForm from "./CourseForm";
 import { bindActionCreators } from "redux";
 import { saveCourse } from "../../api/courseApi";
-function TheManageCourse({ courses, actions, authors, saveCourses, ...props }) {
+import { withRouter } from "react-router-dom";
+
+function TheManageCourse({ courses, actions, authors, saveCourses, history, ...props }) {
   const [course, setCourse] = React.useState({ ...props.course });
   const [errors, setErrors] = React.useState({});
   React.useEffect(() => {
@@ -33,7 +36,10 @@ function TheManageCourse({ courses, actions, authors, saveCourses, ...props }) {
 
   const handleSave = (event) => {
     event.preventDefault();
-    saveCourse(course);
+    saveCourse(course).then(()=>{
+      history.push('/courses')
+    }).catch((error)=>{
+    throw new error})
   };
 
   return (
@@ -68,4 +74,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TheManageCourse);
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(TheManageCourse));

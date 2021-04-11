@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 
 import * as courseActions from "../../redux/action/CreateCourse";
 import * as authorActions from "../../redux/action/createAuthor";
-
+import  { Redirect} from 'react-router-dom'
 import CourseList from "./CourseList";
 import { bindActionCreators } from "redux";
 class CoursesPage extends React.Component {
+  state = {
+    redirectToCoursePage: false,
+  };
+
   // state = {
   //   course: {
   //     titile: "",
@@ -23,23 +27,32 @@ class CoursesPage extends React.Component {
   //   // event.target.reset(); // reset input
   // };
   componentDidMount() {
-    if(this.props.courses.length === 0){
-    this.props.actions.loadCourses().catch((error) => {
-      alert("there is no data " + error);
-    });
+    if (this.props.courses.length === 0) {
+      this.props.actions.loadCourses().catch((error) => {
+        alert("there is no data " + error);
+      });
+    }
+    if (this.props.authors.length === 0) {
+      this.props.actions.loadAuthors().catch((error) => {
+        alert("there is no data " + error);
+      });
+    }
   }
-  if(this.props.authors.length === 0   ){
-    this.props.actions.loadAuthors().catch((error) => {
-      alert("there is no data " + error);
-    });
-  }
-  }
-
 
   render() {
+    
     return (
+        
       <React.Fragment>
         {/* <form onSubmit={this.handleSubmit}> */}
+  {this.state.redirectToCoursePage && <Redirect to="/course"/>}
+        <button
+          className="btn btn-primary"
+          onClick={() => this.setState({ redirectToCoursePage: true })}
+        >
+          {" "}
+          Add
+        </button>
         <h2> Courses</h2>
         {/* <p> Add Courses</p>
         <input
@@ -68,14 +81,14 @@ function mapStateToProps(state) {
       state.authors.length === 0
         ? []
         : state.courses.map((course) => {
-          console.log(course)
+            console.log(course);
             return {
               ...course,
-              authorName: state.authors.find(a => a.id === course.authorId).name,
+              authorName: state.authors.find((a) => a.id === course.authorId)
+                .name,
             };
           }),
-          authors: state.authors
-
+    authors: state.authors,
   };
 }
 function mapDispatchToProps(dispatch) {
