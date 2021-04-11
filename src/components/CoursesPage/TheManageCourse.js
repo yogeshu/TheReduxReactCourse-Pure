@@ -27,7 +27,7 @@ function TheManageCourse({ courses, actions, authors, saveCourses, ...props }) {
     const { name, value } = event.target;
     setCourse((prevCourse) => ({
       ...prevCourse,
-      [name]: name === authors.id ? parseInt(value, 10) : value,
+      [name]: name === "authorId" ? parseInt(value, 10) : value,
     }));
   };
 

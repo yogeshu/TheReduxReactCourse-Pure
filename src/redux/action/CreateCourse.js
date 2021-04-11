@@ -9,8 +9,8 @@ function createCourseSuccess(course) {
   return { type: types.createCourseSuccess, course };
 }
 
-function updateCourseSuccess(courses) {
-  return { type: types.updateCourseSuccess, courses };
+function updateCourseSuccess(course) {
+  return { type: types.updateCourseSuccess, course };
 }
 
 export function loadCourses() {

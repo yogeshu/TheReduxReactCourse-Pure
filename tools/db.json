@@ -72,19 +72,11 @@
     },
     {
       "id": 11,
-      "title": "The Corona Fuck you",
-      "authorId": "3",
-      "category": "TheReact",
-      "createdAt": 1618038163663,
-      "slug": "the-corona-fuck-you"
-    },
-    {
-      "authorId": "2",
-      "title": "Front end developer",
-      "category": "The Fuck",
-      "createdAt": 1618038428724,
-      "slug": "front-end-developer",
-      "id": 12
+      "title": "fuck",
+      "authorId": 2,
+      "category": "fyck",
+      "createdAt": 1618110447352,
+      "slug": "fuck"
     }
   ],
   "authors": [
