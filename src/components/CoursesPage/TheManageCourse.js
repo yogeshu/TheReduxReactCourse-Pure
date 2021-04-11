@@ -10,7 +10,14 @@ import { bindActionCreators } from "redux";
 import { saveCourse } from "../../api/courseApi";
 import { withRouter } from "react-router-dom";
 
-function TheManageCourse({ courses, actions, authors, saveCourses, history, ...props }) {
+function TheManageCourse({
+  courses,
+  actions,
+  authors,
+  saveCourses,
+  history,
+  ...props
+}) {
   const [course, setCourse] = React.useState({ ...props.course });
   const [errors, setErrors] = React.useState({});
   React.useEffect(() => {
@@ -18,13 +25,16 @@ function TheManageCourse({ courses, actions, authors, saveCourses, history, ...p
       actions.loadCourses().catch((error) => {
         alert("there is no data " + error);
       });
+    } else {
+      setCourse({ ...props.course });
     }
+
     if (authors.length === 0) {
       actions.loadAuthors().catch((error) => {
         alert("there is no data " + error);
       });
     }
-  });
+  }, [props.course]);
 
   const hanldeChange = (event) => {
     const { name, value } = event.target;
@@ -36,10 +46,13 @@ function TheManageCourse({ courses, actions, authors, saveCourses, history, ...p
 
   const handleSave = (event) => {
     event.preventDefault();
-    saveCourse(course).then(()=>{
-      history.push('/courses')
-    }).catch((error)=>{
-    throw new error})
+    saveCourse(course)
+      .then(() => {
+        history.push("/courses");
+      })
+      .catch((error) => {
+        throw new error();
+      });
   };
 
   return (
@@ -57,9 +70,19 @@ function TheManageCourse({ courses, actions, authors, saveCourses, history, ...p
   );
 }
 
-function mapStateToProps(state) {
+export function getCourseBySlug(courses, slug) {
+  return courses.find((course) => course.id === slug || null);
+}
+
+function mapStateToProps(state, ownProps) {
+  const slug = ownProps.match.params.slug;
+  const course =
+    slug && state.courses.length > 0
+      ? getCourseBySlug(state.courses, slug)
+      : newCourse;
+  console.log(state.courses.length);
   return {
-    course: newCourse,
+    course:course,
     courses: state.courses,
     authors: state.authors,
   };
@@ -74,4 +97,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(TheManageCourse));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TheManageCourse)
+);
